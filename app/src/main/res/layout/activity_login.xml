@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+                
+    <EditText
+        android:id="@+id/login_password"
+        style="@style/PasswordEditText"
+        android:layout_centerInParent="true"
+        android:hint="@string/login_password" />
+    
+    <EditText
+        android:id="@+id/login_account"
+        style="@style/LoginEditText"
+        android:layout_above="@id/login_password"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/login_account"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/login_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+          
+        <Button
+        	android:id="@+id/login_button_login"
+        	style="@style/LoginButton"       
+        	android:text="@string/login_login" />
+        
+        <Button
+        	android:id="@+id/login_button_register"
+        	style="@style/LoginButton"       
+        	android:text="@string/login_register"
+        	android:layout_marginLeft="10dp"
+        	android:layout_marginStart="10dp" />
+        
+    </LinearLayout>
+
+</RelativeLayout>
