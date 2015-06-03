@@ -31,6 +31,27 @@
             android:label="@string/login_success" >
 
         </activity>
+
+        <activity
+            android:name=".ui.BehaviorActivity"
+            android:label="@string/login_success" >
+
+        </activity>
+        <activity
+            android:name=".ui.TemplateActivity"
+            android:label="@string/login_success" >
+
+        </activity>
+        <activity
+            android:name=".ui.StatisticActivity"
+            android:label="@string/login_success" >
+
+        </activity>
+        <activity
+            android:name=".ui.SettingActivity"
+            android:label="@string/login_success" >
+
+        </activity>
     </application>
 
 </manifest>
