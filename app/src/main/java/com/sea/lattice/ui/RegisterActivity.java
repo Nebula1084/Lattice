@@ -17,12 +17,13 @@ import com.sea.lattice.entity.User;
 
 
 public class RegisterActivity extends ActionBarActivity {
-	private Button register_confirm, register_cancel;
+	private Integer flag;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		new AvosConnection(this);
+        Button register_confirm, register_cancel;
 		register_confirm = (Button) findViewById(R.id.register_confirm);
 		register_confirm.setOnClickListener(new OnClickListener() {
 			@Override
@@ -47,13 +48,15 @@ public class RegisterActivity extends ActionBarActivity {
 		final EditText register_email = (EditText) findViewById(R.id.register_email);
 		final AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
 
+        flag = Integer.valueOf(AvosConnection.FLAG_CONNECTING);
 		builder.setTitle("注册");
 		builder.setMessage("正在注册");
 		builder.setCancelable(false);
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
+                if (flag == AvosConnection.FLAG_DONE)
+				    dialog.dismiss();
 			}
 		});
 		final AlertDialog dialog=builder.create();
@@ -94,6 +97,7 @@ public class RegisterActivity extends ActionBarActivity {
 		user.signUpInBackground(new SignUpCallback() {
 			@Override
 			public void done(AVException e) {
+                flag = AvosConnection.FLAG_DONE;
 				if (e == null) {
 					dialog.setMessage("注册成功");
 				} else {
