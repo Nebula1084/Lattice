@@ -17,12 +17,12 @@ import com.sea.lattice.entity.User;
 
 
 public class RegisterActivity extends ActionBarActivity {
-	private Button register_confirm, register_cancel;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		new AvosConnection(this);
+        Button register_confirm, register_cancel;
 		register_confirm = (Button) findViewById(R.id.register_confirm);
 		register_confirm.setOnClickListener(new OnClickListener() {
 			@Override
