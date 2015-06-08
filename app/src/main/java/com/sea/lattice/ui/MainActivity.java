@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.avos.avoscloud.AVUser;
 import com.sea.lattice.R;
 
 public class MainActivity extends ActionBarActivity {
@@ -30,7 +31,9 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            AVUser.logOut();
+            finish();
             return true;
         }
 
