@@ -28,6 +28,11 @@ public class LoginActivity extends Activity {
 
         new AvosConnection(this);
 
+        AVUser currentUser = AVUser.getCurrentUser();
+        if (currentUser != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
         findViewById(R.id.login_button_register).setOnClickListener(new View.OnClickListener() {
 
             @Override
