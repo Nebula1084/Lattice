@@ -2,11 +2,13 @@ package com.sea.lattice.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
@@ -60,22 +62,19 @@ public class LoginActivity extends Activity {
         builder.setTitle("登陆");
         builder.setMessage("正在登陆");
         builder.setCancelable(false);
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (flag == AvosConnection.FLAG_DONE)
-                    dialog.dismiss();
-            }
-        });
         final AlertDialog dialog = builder.create();
         dialog.show();
 
         if (login_account.getText().length()==0){
-            dialog.setMessage("账号不能为空");
+            Toast toast = Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT);
+            toast.show();
+            dialog.dismiss();
             return;
         }
         if (login_password.getText().length()==0){
-            dialog.setMessage("密码不能为空");
+            Toast toast = Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT);
+            toast.show();
+            dialog.dismiss();
             return;
         }
 
@@ -89,7 +88,9 @@ public class LoginActivity extends Activity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    dialog.setMessage(e.getMessage());
+                    dialog.dismiss();
+                    Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });

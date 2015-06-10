@@ -2,14 +2,18 @@ package com.sea.lattice.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SignUpCallback;
 import com.sea.lattice.R;
 import com.sea.lattice.dao.AvosConnection;
@@ -52,42 +56,47 @@ public class RegisterActivity extends ActionBarActivity {
 		builder.setTitle("注册");
 		builder.setMessage("正在注册");
 		builder.setCancelable(false);
-		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-                if (flag == AvosConnection.FLAG_DONE)
-				    dialog.dismiss();
-			}
-		});
 		final AlertDialog dialog=builder.create();
 		dialog.show();
 
 		User user = new User();
 		user.setUsername(register_account.getText().toString());
-		String p1 = register_password.getText().toString();
-		String p2 = register_reconfirm.getText().toString();
+		final String p1 = register_password.getText().toString();
+		final String p2 = register_reconfirm.getText().toString();
         if (register_account.getText().length()==0) {
-            dialog.setMessage("账号不能为空");
+			Toast toast = Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
             return;
         }
         if (register_nickname.getText().length()==0) {
-            dialog.setMessage("昵称不能为空");
+			Toast toast = Toast.makeText(getApplicationContext(), "昵称不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
             return;
         }
         if (register_password.getText().length()==0) {
-            dialog.setMessage("密码不能为空");
+			Toast toast = Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
             return;
         }
         if (register_reconfirm.getText().length()==0) {
-            dialog.setMessage("确认密码不能为空");
+			Toast toast = Toast.makeText(getApplicationContext(), "确认密码不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
             return;
         }
         if (register_email.getText().length()==0) {
-            dialog.setMessage("电子邮件不能为空");
+			Toast toast = Toast.makeText(getApplicationContext(), "电子邮件不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
             return;
         }
 		if (!p1.equals(p2)) {
-			dialog.setMessage("密码不一致");
+			Toast toast = Toast.makeText(getApplicationContext(), "密码不一致不能为空", Toast.LENGTH_SHORT);
+			toast.show();
+			dialog.dismiss();
 			return;
 		}
 		user.setPassword(p1);
@@ -99,9 +108,28 @@ public class RegisterActivity extends ActionBarActivity {
 			public void done(AVException e) {
                 flag = AvosConnection.FLAG_DONE;
 				if (e == null) {
-					dialog.setMessage("注册成功");
+					Toast toast = Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT);
+					toast.show();
+					User user = new User();
+					user.logInInBackground(register_account.getText().toString(), p1, new LogInCallback<AVUser>() {
+						@Override
+						public void done(AVUser avUser, AVException e) {
+							flag = AvosConnection.FLAG_DONE;
+							if (avUser != null){
+								dialog.dismiss();
+								startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+								finish();
+							} else {
+								dialog.dismiss();
+								Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+								toast.show();
+							}
+						}
+					});
 				} else {
-					dialog.setMessage(e.getMessage());
+					Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+					toast.show();
+					dialog.dismiss();
 				}
 			}
 		});
