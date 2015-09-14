@@ -1,7 +1,6 @@
 package com.sea.lattice.ui;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +17,7 @@ import com.avos.avoscloud.SignUpCallback;
 import com.sea.lattice.R;
 import com.sea.lattice.dao.AvosConnection;
 import com.sea.lattice.entity.User;
+import com.sea.lattice.ui.main.MainActivity;
 
 
 public class RegisterActivity extends ActionBarActivity {

@@ -2,8 +2,6 @@ package com.sea.lattice.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +14,7 @@ import com.avos.avoscloud.LogInCallback;
 import com.sea.lattice.R;
 import com.sea.lattice.dao.AvosConnection;
 import com.sea.lattice.entity.User;
+import com.sea.lattice.ui.main.MainActivity;
 
 /**
  * Created by Sea on 6/2/2015.
@@ -48,7 +47,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                LoginButton();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                LoginButton();
             }
         });
     }

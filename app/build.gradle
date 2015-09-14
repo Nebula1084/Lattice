@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.sea.lattice"
-        minSdkVersion 15
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 11
+        targetSdkVersion 15
+        versionCode 2
+        versionName "2.0"
     }
     buildTypes {
         release {
@@ -49,4 +49,8 @@ dependencies {
 
     //avoscloud-search 为 LeanCloud 应用内搜索包
     compile 'cn.leancloud.android:avoscloud-search:v3.3+@aar'
+
+    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.android.support:cardview-v7:21.0.+'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
 }
