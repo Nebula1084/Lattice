@@ -16,6 +16,15 @@
         <item name="android:textSize">@dimen/common_text_size</item>
     </style>
 
+    <style name="MainButton">
+        <item name="android:layout_width">@dimen/main_button_width</item>
+        <item name="android:layout_height">@dimen/main_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/main_button</item>
+        <item name="android:layout_margin">@dimen/main_button_margin</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="LoginButton" parent="CommonButton">
         <item name="android:background">@drawable/lattice_button</item>
         <item name="android:textColor">@color/white</item>
@@ -35,6 +44,29 @@
     <style name="PasswordEditText" parent="CommonEditText">
         <item name="android:ems">15</item>
         <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="TextCommonInput">
+        <item name="android:layout_height">@dimen/text_input_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_input_size</item>
+    </style>
+
+    <style name="TextAddOn" parent="TextCommonInput">
+        <item name="android:layout_width">@dimen/text_addon_width</item>
+    </style>
+
+    <style name="TextInput" parent="TextCommonInput">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="TextEditInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/text_input_size</item>
+        <item name="android:gravity">top</item>
     </style>
 
 </resources>

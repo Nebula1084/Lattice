@@ -16,4 +16,9 @@
     <string name="register_reconfirm">确认密码</string>
     <string name="login_success">登陆成功</string>
     <string name="email">电子邮件</string>
+    <string name="white_behavior">白业</string>
+    <string name="white_counter">白业对治</string>
+    <string name="black_counter">黑业对治</string>
+    <string name="black_behavior">黑业</string>
+    <string name="str_record">记录</string>
 </resources>

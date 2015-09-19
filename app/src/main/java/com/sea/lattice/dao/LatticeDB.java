@@ -1,0 +1,50 @@
+package com.sea.lattice.dao;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.sea.lattice.dao.behavior.CounterBehavior;
+import com.sea.lattice.dao.behavior.OriginBehavior;
+
+/**
+ * Created by Sea on 9/13/2015.
+ */
+public class LatticeDB extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "Lattice.db";
+    private static final int DATABASE_VERSION = 6;
+    private Context context;
+
+    LatticeDB(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.v("execute?", "onUpgrade");
+        context.deleteDatabase(DATABASE_NAME);
+        //truncateDataBase(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        super.onDowngrade(db, oldVersion, newVersion);
+        Log.v("execute?", "onDowngrade");
+        context.deleteDatabase(DATABASE_NAME);
+        //truncateDataBase(db);
+    }
+
+    private void truncateDataBase(SQLiteDatabase db) {
+        Log.v("execute?", "Yes");
+        db.execSQL("drop table if exists " + CounterBehavior.COUNTER_TABLE);
+        db.execSQL("drop table if exists " + OriginBehavior.BEHAVIOR_TABLE);
+    }
+
+}
