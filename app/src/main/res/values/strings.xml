@@ -21,4 +21,5 @@
     <string name="black_counter">黑业对治</string>
     <string name="black_behavior">黑业</string>
     <string name="str_record">记录</string>
+    <string name="dialog_title_timechoose">选择时间</string>
 </resources>
