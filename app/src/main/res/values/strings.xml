@@ -22,4 +22,5 @@
     <string name="black_behavior">黑业</string>
     <string name="str_record">记录</string>
     <string name="dialog_title_timechoose">选择时间</string>
+    <string name="record_choose_template">选择模板</string>
 </resources>
