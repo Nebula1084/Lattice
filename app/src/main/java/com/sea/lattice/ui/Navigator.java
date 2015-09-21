@@ -67,7 +67,7 @@ public class Navigator extends LinearLayout {
         }
         ViewGroup.LayoutParams params = navigator_cursor.getLayoutParams();
         DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
-        itemWidth = dm.widthPixels / 2;
+        itemWidth = dm.widthPixels / mFragmentPagerAdapter.getCount();
         params.width = itemWidth;
         navigator_cursor.setLayoutParams(params);
         selectBar(0);
