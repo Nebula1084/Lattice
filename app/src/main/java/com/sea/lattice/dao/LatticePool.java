@@ -18,13 +18,13 @@ public abstract class LatticePool {
 
     protected void insert(LatticeObject object) {
         sqLiteDatabase.insert(object.getTableName(), null, object.toContentValues());
-        Cursor cursor = sqLiteDatabase.rawQuery("select max(id) from " + object.getTableName(), new String[]{});
+        Cursor cursor = sqLiteDatabase.rawQuery("select max(_id) from " + object.getTableName(), new String[]{});
         cursor.moveToFirst();
         object.setId(cursor.getInt(0));
     }
 
     protected void update(LatticeObject object) {
-        sqLiteDatabase.update(object.getTableName(), object.toContentValues(), "id = ?", new String[]{String.valueOf(object.getId())});
+        sqLiteDatabase.update(object.getTableName(), object.toContentValues(), "_id = ?", new String[]{String.valueOf(object.getId())});
     }
 
     protected void save(LatticeObject object) {

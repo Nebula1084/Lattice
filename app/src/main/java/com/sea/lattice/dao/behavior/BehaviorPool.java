@@ -22,7 +22,7 @@ public class BehaviorPool extends LatticePool {
     }
 
     private void createTable(String tableName) {
-        sqLiteDatabase.execSQL("create table if not exists " + tableName + " (id integer primary key autoincrement, date integer, category integer, content varchar, opp integer)");
+        sqLiteDatabase.execSQL("create table if not exists " + tableName + " (_id integer primary key autoincrement, date integer, category integer, content varchar, opp integer)");
     }
 
     public void save(OriginBehavior behavior) throws Exception {
@@ -80,7 +80,7 @@ public class BehaviorPool extends LatticePool {
         List<OriginBehavior> ret = new ArrayList<>();
         sqLiteDatabase.beginTransaction();
         try {
-            Cursor cursor = sqLiteDatabase.query(OriginBehavior.BEHAVIOR_TABLE, new String[]{"id", "date", "category", "content", "opp"}, "", new String[]{}, "", "", "");
+            Cursor cursor = sqLiteDatabase.query(OriginBehavior.BEHAVIOR_TABLE, new String[]{"_id", "date", "category", "content", "opp"}, "", new String[]{}, "", "", "");
             if (cursor.moveToFirst()) {
                 do {
                     switch (cursor.getInt(2)) {

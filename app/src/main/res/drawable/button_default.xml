@@ -5,7 +5,7 @@
     
     <size
         android:width="@dimen/common_button_width"
-        android:height="@dimen/common_button_height" />    
+        android:height="@dimen/common_button_height" />
     
     <solid
         android:color="@color/skyblue" />

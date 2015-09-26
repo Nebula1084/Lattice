@@ -10,11 +10,13 @@ import android.widget.Button;
 import com.sea.lattice.R;
 import com.sea.lattice.dao.behavior.CounterBehavior;
 import com.sea.lattice.dao.behavior.OriginBehavior;
+import com.sea.lattice.ui.BehaviorList;
 import com.sea.lattice.ui.record.RecordActivity;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_wht_cnt, btn_blk_cnt, btn_wht_bhv, btn_blk_bhv;
+    private Button main_behavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,17 @@ public class MainActivity extends Activity {
         btn_wht_bhv.setOnClickListener(new RecordListener(this));
         btn_blk_bhv = (Button) this.findViewById(R.id.btn_blk_bhv);
         btn_blk_bhv.setOnClickListener(new RecordListener(this));
+        main_behavior = (Button) this.findViewById(R.id.main_behavior);
+        main_behavior.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.main_behavior:
+                startActivity(new Intent(this, BehaviorList.class));
+                break;
+        }
     }
 
     class RecordListener implements View.OnClickListener {

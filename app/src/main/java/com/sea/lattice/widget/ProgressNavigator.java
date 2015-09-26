@@ -35,13 +35,17 @@ public class ProgressNavigator extends LinearLayout {
         titleBar = (LinearLayout)this.findViewById(R.id.titlebar);
     }
 
-    public void forword(String title){
+    public void forword(String title, OnBarClickListener onBarClickListener){
         inflate(getContext(), R.layout.progressnavigator_bar, titleBar);
         Log.v("pn", "forward");
         TextView textView = (TextView)titleBar.getChildAt(titleBar.getChildCount()-1);
         textView.setText(title);
         textView.setId(titleBar.getChildCount());
-        textView.setOnClickListener(new OnBarClickListener());
+        textView.setOnClickListener(onBarClickListener);
+    }
+
+    public void forword(String title){
+        forword(title, new OnBarClickListener());
     }
 
     private void pop(int id){

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.sea.lattice.content.BehaviorMeta;
 import com.sea.lattice.dao.behavior.CounterBehavior;
 import com.sea.lattice.dao.behavior.OriginBehavior;
 
@@ -13,17 +14,22 @@ import com.sea.lattice.dao.behavior.OriginBehavior;
  */
 public class LatticeDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Lattice.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
     private Context context;
 
-    LatticeDB(Context context) {
+    public LatticeDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("create table if not exists " + BehaviorMeta.TNAME + " ("
+                + BehaviorMeta.ID + " integer primary key autoincrement, "
+                + BehaviorMeta.DATE + " integer, "
+                + BehaviorMeta.CATEGORY + " integer,"
+                + BehaviorMeta.CONTENT + "content varchar,"
+                + BehaviorMeta.OPP + "opp integer)");
     }
 
     @Override

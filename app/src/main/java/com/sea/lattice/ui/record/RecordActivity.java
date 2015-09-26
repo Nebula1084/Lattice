@@ -12,7 +12,7 @@ import com.sea.lattice.ui.Navigator;
 /**
  * Created by Sea on 9/15/2015.
  */
-public class RecordActivity extends FragmentActivity implements View.OnClickListener{
+public class RecordActivity extends FragmentActivity implements View.OnClickListener {
 
     private Navigator navigator;
     private DefaultFragmentPagerAdapter mPagerAdapter;
@@ -21,17 +21,18 @@ public class RecordActivity extends FragmentActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_record);
-        navigator = (Navigator)this.findViewById(R.id.screen_record_pager);
+        navigator = (Navigator) this.findViewById(R.id.screen_record_pager);
         mPagerAdapter = new DefaultFragmentPagerAdapter(getSupportFragmentManager());
-        mPagerAdapter.addFragment(getString(R.string.str_record),new RecordFragment());
-        mPagerAdapter.addFragment(getString(R.string.record_choose_template),new TemplateFragment());
+        mPagerAdapter.addFragment(getString(R.string.str_record), new RecordFragment());
+        mPagerAdapter.addFragment(getString(R.string.record_choose_template), new TemplateFragment());
         navigator.setAdapter(mPagerAdapter);
+        navigator.setFocusableInTouchMode(false);
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
         }
     }
 }

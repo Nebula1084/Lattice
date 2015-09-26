@@ -7,7 +7,7 @@ import android.content.ContentValues;
  */
 public abstract class LatticeObject {
     protected String TABLE_NAME;
-    protected int id;
+    protected int _id;
 
     public final static int NOT_INSERT = -1;
 
@@ -16,11 +16,11 @@ public abstract class LatticeObject {
     }
 
     public int getId() {
-        return id;
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int _id) {
+        this._id = _id;
     }
 
     abstract public ContentValues toContentValues();

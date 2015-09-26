@@ -23,6 +23,7 @@ public class TimeDialog extends AlertDialog implements DialogInterface.OnClickLi
     private Calendar tmpCalendar;
     private final DatePicker mDatePicker;
     private final TimePicker mTimePicker;
+    private boolean is24HourView;
 
     public TimeDialog(Context context) {
         this(context, 0, Calendar.getInstance(), true);
@@ -42,6 +43,7 @@ public class TimeDialog extends AlertDialog implements DialogInterface.OnClickLi
         super(context, resovleDialogTheme(context, theme));
         mCalendar = calendar;
         tmpCalendar = (Calendar)calendar.clone();
+        this.is24HourView=is24HourView;
         final Context themeContext = getContext();
         final LayoutInflater inflater = LayoutInflater.from(themeContext);
         final View view = inflater.inflate(R.layout.widget_time_picker, null);
@@ -88,6 +90,11 @@ public class TimeDialog extends AlertDialog implements DialogInterface.OnClickLi
     public void show() {
         super.show();
         tmpCalendar = (Calendar) mCalendar.clone();
+        mDatePicker.init(tmpCalendar.get(Calendar.YEAR), tmpCalendar.get(Calendar.MONTH), tmpCalendar.get(Calendar.DAY_OF_MONTH), this);
+        mTimePicker.setIs24HourView(is24HourView);
+        mTimePicker.setCurrentHour(tmpCalendar.get(Calendar.HOUR_OF_DAY));
+        mTimePicker.setCurrentMinute(tmpCalendar.get(Calendar.MINUTE));
+        mTimePicker.setOnTimeChangedListener(this);
     }
 
     public Date getDate(){
