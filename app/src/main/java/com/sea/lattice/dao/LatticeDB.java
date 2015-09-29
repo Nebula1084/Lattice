@@ -16,6 +16,7 @@ public class LatticeDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Lattice.db";
     private static final int DATABASE_VERSION = 8;
     private Context context;
+    public static final String ROWID = "rowid";
 
     public LatticeDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,10 +27,10 @@ public class LatticeDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table if not exists " + BehaviorMeta.TNAME + " ("
                 + BehaviorMeta.ID + " integer primary key autoincrement, "
-                + BehaviorMeta.DATE + " integer, "
-                + BehaviorMeta.CATEGORY + " integer,"
-                + BehaviorMeta.CONTENT + "content varchar,"
-                + BehaviorMeta.OPP + "opp integer)");
+                + BehaviorMeta.DATE + " integer not null, "
+                + BehaviorMeta.CATEGORY + " integer not null,"
+                + BehaviorMeta.CONTENT + "content varchar not null,"
+                + BehaviorMeta.OPP + "opp integer default -1)");
     }
 
     @Override

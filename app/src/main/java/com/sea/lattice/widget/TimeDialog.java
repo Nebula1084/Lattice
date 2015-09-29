@@ -79,9 +79,10 @@ public class TimeDialog extends AlertDialog implements DialogInterface.OnClickLi
         switch (which) {
             case BUTTON_POSITIVE:
                 mCalendar = (Calendar) tmpCalendar.clone();
+                cancel();
                 break;
             case BUTTON_NEGATIVE:
-                cancel();
+                dismiss();
                 break;
         }
     }

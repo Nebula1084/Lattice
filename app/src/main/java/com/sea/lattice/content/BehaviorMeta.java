@@ -23,10 +23,10 @@ public class BehaviorMeta {
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTOHORITY + "/" + TNAME);
 
-    final public static int WHITE_BEHAVIOR = 1;
-    final public static int WHITE_COUNTER = 2;
-    final public static int BLACK_BEHAVIOR = 3;
-    final public static int BALCK_COUNTER = 4;
+    final public static int WHITE_BEHAVIOR = 0;
+    final public static int WHITE_COUNTER = 1;
+    final public static int BLACK_BEHAVIOR = 2;
+    final public static int BALCK_COUNTER = 3;
 
     public static String getCategory(int category) {
         switch (category) {

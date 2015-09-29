@@ -39,6 +39,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/frg_rcd_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -48,10 +49,12 @@
         android:layout_height="@dimen/common_button_height"
         android:layout_gravity="center_horizontal">
         <Button
+            android:id="@+id/frg_rcd_confirm"
             style="@style/LoginButton"
             android:text="@string/confirm"/>
 
         <Button
+            android:id="@+id/frg_rcd_cancel"
             style="@style/LoginButton"
             android:text="存为模板"/>
 

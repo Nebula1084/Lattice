@@ -23,7 +23,7 @@
                 android:text="@string/white_behavior" />
 
             <Button
-                android:id="@+id/btn_blk_bhv"
+                android:id="@+id/btn_wht_cnt"
                 style="@style/MainButton"
                 android:text="@string/white_counter" />
 
@@ -35,16 +35,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_wht_cnt"
+                android:id="@+id/btn_blk_cnt"
                 style="@style/MainButton"
                 android:text="@string/black_counter" />
 
             <Button
-                android:id="@+id/btn_blk_cnt"
+                android:id="@+id/btn_blk_bhv"
                 style="@style/MainButton"
                 android:text="@string/black_behavior" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete_test"
+        style="@style/LoginButton"
+        android:text="删除"/>
 
     <LinearLayout
         android:layout_width="match_parent"
