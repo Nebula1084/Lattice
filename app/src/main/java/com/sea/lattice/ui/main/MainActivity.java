@@ -9,16 +9,15 @@ import android.widget.Button;
 
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
-import com.sea.lattice.dao.behavior.CounterBehavior;
-import com.sea.lattice.dao.behavior.OriginBehavior;
+import com.sea.lattice.content.DirectoryMeta;
 import com.sea.lattice.ui.BehaviorActivity;
-import com.sea.lattice.ui.BehaviorList;
+import com.sea.lattice.ui.template.TemplateActivity;
 import com.sea.lattice.ui.record.RecordActivity;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_wht_cnt, btn_blk_cnt, btn_wht_bhv, btn_blk_bhv;
-    private Button main_behavior, btn_delete_test;
+    private Button main_behavior, btn_delete_test, btn_delete_directory, main_template;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +33,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_blk_bhv.setOnClickListener(new RecordListener(this));
         main_behavior = (Button) this.findViewById(R.id.main_behavior);
         main_behavior.setOnClickListener(this);
+        main_template = (Button) this.findViewById(R.id.main_template);
+        main_template.setOnClickListener(this);
         btn_delete_test = (Button) this.findViewById(R.id.btn_delete_test);
         btn_delete_test.setOnClickListener(this);
+        btn_delete_directory = (Button) this.findViewById(R.id.btn_delete_directory);
+        btn_delete_directory.setOnClickListener(this);
     }
 
     @Override
@@ -44,8 +47,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.main_behavior:
                 startActivity(new Intent(this, BehaviorActivity.class));
                 break;
+            case R.id.main_template:
+                startActivity(new Intent(this, TemplateActivity.class));
+                break;
             case R.id.btn_delete_test:
                 getContentResolver().delete(BehaviorMeta.CONTENT_URI, "", new String[]{});
+                break;
+            case R.id.btn_delete_directory:
+                getContentResolver().delete(DirectoryMeta.CONTENT_URI, "", new String[]{});
                 break;
         }
     }

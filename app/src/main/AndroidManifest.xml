@@ -44,10 +44,23 @@
             android:label="@string/login_success" >
 
         </activity>
+        <activity
+            android:name=".ui.template.TemplateActivity"
+            android:label="选择模板">
+
+        </activity>
 
         <provider
             android:authorities="com.sea.lattice.Behavior"
             android:name=".content.BehaviorProvider"/>
+
+        <provider
+            android:authorities="com.sea.lattice.Directory"
+            android:name=".content.DirectoryProvider"/>
+
+        <provider
+            android:authorities="com.sea.lattice.Template"
+            android:name=".content.TemplateProvider"/>
     </application>
 
 </manifest>

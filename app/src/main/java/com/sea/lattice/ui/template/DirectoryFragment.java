@@ -1,4 +1,4 @@
-package com.sea.lattice.ui.record;
+package com.sea.lattice.ui.template;
 
 import android.database.ContentObserver;
 import android.database.Cursor;

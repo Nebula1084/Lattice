@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.sea.lattice.content.BehaviorMeta;
+import com.sea.lattice.content.DirectoryMeta;
+import com.sea.lattice.content.TemplateMeta;
 import com.sea.lattice.dao.behavior.CounterBehavior;
 import com.sea.lattice.dao.behavior.OriginBehavior;
 
@@ -14,7 +16,7 @@ import com.sea.lattice.dao.behavior.OriginBehavior;
  */
 public class LatticeDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Lattice.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 16;
     private Context context;
     public static final String ROWID = "rowid";
 
@@ -25,12 +27,31 @@ public class LatticeDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL("create table if not exists " + BehaviorMeta.TNAME + " ("
                 + BehaviorMeta.ID + " integer primary key autoincrement, "
                 + BehaviorMeta.DATE + " integer not null, "
-                + BehaviorMeta.CATEGORY + " integer not null,"
-                + BehaviorMeta.CONTENT + "content varchar not null,"
-                + BehaviorMeta.OPP + "opp integer default -1)");
+                + BehaviorMeta.CATEGORY + " integer not null, "
+                + BehaviorMeta.CONTENT + " varchar not null, "
+                + BehaviorMeta.OPP + " integer default -1)");
+
+        db.execSQL("create table if not exists " + DirectoryMeta.TNAME + " ("
+                + DirectoryMeta.ID + " integer primary key autoincrement, "
+                + DirectoryMeta.NAME + " varchar not null)");
+
+        db.execSQL("create table if not exists " + TemplateMeta.TNAME + " ("
+                + TemplateMeta.ID + " integer primary key autoincrement, "
+                + TemplateMeta.CATEGORY + " integer not null,"
+                + TemplateMeta.NAME + " varchar not null, "
+                + TemplateMeta.CONTENT + " varchar not null, "
+                + TemplateMeta.FREQUENCY + " integer default 0, "
+                + TemplateMeta.DIRECTORY + " integer, "
+                + " foreign key(" + TemplateMeta.ID + ") references " + DirectoryMeta.TNAME + "(" + DirectoryMeta.ID + ") on delete cascade on update cascade)");
+
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
     }
 
     @Override

@@ -6,16 +6,15 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 
 import com.sea.lattice.dao.LatticeDB;
 
 /**
- * Created by Sea on 9/28/2015.
+ * Created by Sea on 9/30/2015.
  */
-public class DirectoryProvider extends ContentProvider {
+public class TemplateProvider extends ContentProvider{
     LatticeDB lDB;
     SQLiteDatabase db;
 
@@ -23,7 +22,7 @@ public class DirectoryProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(DirectoryMeta.AUTOHORITY, DirectoryMeta.TNAME, DirectoryMeta.ITEM);
+        uriMatcher.addURI(TemplateMeta.AUTOHORITY, TemplateMeta.TNAME, TemplateMeta.ITEM);
     }
 
     @Override
@@ -37,8 +36,8 @@ public class DirectoryProvider extends ContentProvider {
         db = lDB.getWritableDatabase();
         Cursor c;
         switch (uriMatcher.match(uri)){
-            case DirectoryMeta.ITEM:
-                c = db.query(DirectoryMeta.TNAME, projection, selection, selectionArgs, "", "", sortOrder);
+            case TemplateMeta.ITEM:
+                c = db.query(TemplateMeta.TNAME, projection, selection, selectionArgs, "", "", sortOrder);
                 break;
             default:
                 Log.d("!!!!!!", "Unknown URI" + uri);
@@ -60,9 +59,9 @@ public class DirectoryProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         long rowId;
         db = lDB.getWritableDatabase();
-        rowId = db.insert(DirectoryMeta.TNAME, DirectoryMeta.ID, values);
-        if (rowId > 0) {
-            Uri noteUri = ContentUris.withAppendedId(DirectoryMeta.CONTENT_URI, rowId);
+        rowId = db.insert(TemplateMeta.TNAME, TemplateMeta.ID, values);
+        if (rowId>0){
+            Uri noteUri = ContentUris.withAppendedId(TemplateMeta.CONTENT_URI, rowId);
             getContext().getContentResolver().notifyChange(noteUri, null);
             return noteUri;
         }
@@ -74,8 +73,8 @@ public class DirectoryProvider extends ContentProvider {
         db = lDB.getWritableDatabase();
         int count;
         switch (uriMatcher.match(uri)) {
-            case DirectoryMeta.ITEM:
-                count = db.delete(DirectoryMeta.TNAME, selection, selectionArgs);
+            case TemplateMeta.ITEM:
+                count = db.delete(TemplateMeta.TNAME, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI" + uri);
@@ -88,8 +87,8 @@ public class DirectoryProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         db = lDB.getWritableDatabase();
         switch (uriMatcher.match(uri)) {
-            case DirectoryMeta.ITEM:
-                db.update(DirectoryMeta.TNAME, values, selection, selectionArgs);
+            case TemplateMeta.ITEM:
+                db.update(TemplateMeta.TNAME, values, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI" + uri);

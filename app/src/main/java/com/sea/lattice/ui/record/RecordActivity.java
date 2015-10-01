@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
-import com.sea.lattice.dao.behavior.Behavior;
 import com.sea.lattice.ui.BehaviorList;
 
 

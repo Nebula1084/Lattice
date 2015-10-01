@@ -15,6 +15,16 @@ import com.sea.lattice.R;
 public class ProgressNavigator extends LinearLayout {
     private LinearLayout titleBar;
 
+    public abstract class OnBackwardListener{
+        View view;
+
+        public OnBackwardListener(View view){
+            this.view = view;
+        }
+
+        abstract public void OnBackward(View view);
+    }
+
     public ProgressNavigator(Context context) {
         super(context);
         init();
@@ -45,10 +55,10 @@ public class ProgressNavigator extends LinearLayout {
     }
 
     public void forword(String title){
-        forword(title, new OnBarClickListener());
+        forword(title, new OnBarClickListener(this));
     }
 
-    private void pop(int id){
+    void pop(int id){
         int i = titleBar.getChildCount()-1;
         while (titleBar.getChildAt(i).getId()!=id){
             titleBar.removeViewAt(i);
@@ -56,11 +66,16 @@ public class ProgressNavigator extends LinearLayout {
         }
     }
 
-    class OnBarClickListener implements OnClickListener{
+    public static class OnBarClickListener implements OnClickListener{
+        ProgressNavigator progressNavigator;
+
+        public OnBarClickListener(ProgressNavigator progressNavigator){
+            this.progressNavigator=progressNavigator;
+        }
 
         @Override
         public void onClick(View v) {
-            pop(v.getId());
+            progressNavigator.pop(v.getId());
         }
     }
 

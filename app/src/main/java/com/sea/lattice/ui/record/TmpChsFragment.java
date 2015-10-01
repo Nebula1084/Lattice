@@ -26,82 +26,13 @@ public class TmpChsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frg_rcd_category, container, false);
-        try {
-            mCallback = (OnTemplateSelectedListener) getParentFragment();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(getParentFragment().toString()
-                    + " must implement OnCategorySelectedListener");
-        }
+
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        getListView().setAdapter(new ListAdapter() {
-            
-            @Override
-            public boolean areAllItemsEnabled() {
-                return true;
-            }
 
-            @Override
-            public boolean isEnabled(int position) {
-                return true;
-            }
-
-            @Override
-            public void registerDataSetObserver(DataSetObserver observer) {
-
-            }
-
-            @Override
-            public void unregisterDataSetObserver(DataSetObserver observer) {
-
-            }
-
-            @Override
-            public int getCount() {
-                return 3;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public boolean hasStableIds() {
-                return false;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null){
-                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_category, null);
-                }
-                return convertView;
-            }
-
-            @Override
-            public int getItemViewType(int position) {
-                return 0;
-            }
-
-            @Override
-            public int getViewTypeCount() {
-                return 1;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-        });
     }
 
     @Override

@@ -51,6 +51,11 @@
         style="@style/LoginButton"
         android:text="删除"/>
 
+    <Button
+        android:id="@+id/btn_delete_directory"
+        style="@style/LoginButton"
+        android:text="删除目录"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

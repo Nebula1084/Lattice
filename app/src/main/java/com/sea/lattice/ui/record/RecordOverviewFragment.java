@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.sea.lattice.R;
 import com.sea.lattice.ui.DefaultFragmentPagerAdapter;
 import com.sea.lattice.ui.Navigator;
+import com.sea.lattice.ui.template.TemplateFragment;
 
 /**
  * Created by Sea on 9/26/2015.

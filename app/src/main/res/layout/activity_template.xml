@@ -3,4 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.sea.lattice.widget.ProgressNavigator
+        android:id="@+id/progress_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progressnavbar_height">
+
+    </com.sea.lattice.widget.ProgressNavigator>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/add"
+        style="@style/CommonButton"
+        android:layout_height="@dimen/common_button_height"
+        android:layout_width="match_parent"
+        android:background="@drawable/lattice_button"
+        android:text="@string/str_add"/>
+
 </LinearLayout>

@@ -96,7 +96,6 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
             case BehaviorMeta.WHITE_COUNTER:
             case BehaviorMeta.BALCK_COUNTER:
                 int opp = bundle.getInt(BehaviorMeta.ID);
-                Log.v(BehaviorMeta.ID, String.valueOf(opp));
                 cv.put(BehaviorMeta.OPP, opp);
                 uri = behaviorResolver.insert(BehaviorMeta.CONTENT_URI, cv);
                 String rowId = uri.getPathSegments().get(1);

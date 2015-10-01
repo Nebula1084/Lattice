@@ -25,4 +25,5 @@
     <string name="record_choose_template">选择模板</string>
     <string name="str_behavior">业习</string>
     <string name="str_behavior_choose">选择业习</string>
+    <string name="str_add">添加</string>
 </resources>

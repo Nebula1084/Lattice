@@ -3,10 +3,10 @@
 buildscript {
     repositories {
         jcenter()
-        //ÕâÀïÊÇ LeanCloud µÄ°ü²Ö¿â
-        maven {
-            url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
-        }
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ LeanCloud ï¿½Ä°ï¿½ï¿½Ö¿ï¿½
+//        maven {
+//            url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
+//        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
@@ -19,10 +19,10 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        //ÕâÀïÊÇ LeanCloud µÄ°ü²Ö¿â
-        maven {
-            url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
-        }
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ LeanCloud ï¿½Ä°ï¿½ï¿½Ö¿ï¿½
+//        maven {
+//            url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
+//        }
     }
 
 }

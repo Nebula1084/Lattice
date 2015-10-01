@@ -13,7 +13,7 @@ import com.sea.lattice.widget.ProgressNavigator;
 /**
  * Created by Sea on 9/19/2015.
  */
-public class TemplateFragment extends Fragment implements CategoryFragment.OnCategorySelectedListener, TmpChsFragment.OnTemplateSelectedListener {
+public class TemplateFragment extends Fragment implements TmpChsFragment.OnTemplateSelectedListener {
     private ProgressNavigator mProgressNavigator;
 
     @Override
@@ -31,12 +31,6 @@ public class TemplateFragment extends Fragment implements CategoryFragment.OnCat
         fragmentManager.beginTransaction().add(R.id.fragment_container, new DirectoryFragment()).commit();
     }
 
-    @Override
-    public void onCategorySelected(int position) {
-        mProgressNavigator.forword("选择模板");
-        FragmentManager fragmentManager=getChildFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.fragment_container, new TmpChsFragment()).commit();
-    }
 
     @Override
     public void onTempalteSelected(int position) {
