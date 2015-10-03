@@ -26,12 +26,12 @@
 
         <TextView
             style="@style/TextAddOn"
-            android:text="业习" />
+            android:text="名称" />
 
         <EditText
             android:id="@+id/frg_tmp_name"
             style="@style/TextInput"
-            android:text="选择业习" />
+            android:text="" />
 
     </LinearLayout>
 

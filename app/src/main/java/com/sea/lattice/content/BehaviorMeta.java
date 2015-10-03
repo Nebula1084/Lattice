@@ -27,6 +27,7 @@ public class BehaviorMeta {
     final public static int WHITE_COUNTER = 1;
     final public static int BLACK_BEHAVIOR = 2;
     final public static int BALCK_COUNTER = 3;
+    final public static int ALL=4;
 
     public static String getCategory(int category) {
         switch (category) {

@@ -22,4 +22,5 @@ public class TemplateMeta {
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTOHORITY + "/" + TNAME);
 
+    public static final int NOT_INSERT = -1;
 }

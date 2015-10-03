@@ -13,6 +13,7 @@ import com.sea.lattice.content.DirectoryMeta;
 import com.sea.lattice.ui.BehaviorActivity;
 import com.sea.lattice.ui.template.TemplateActivity;
 import com.sea.lattice.ui.record.RecordActivity;
+import com.sea.lattice.ui.template.TemplateFragment;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -48,7 +49,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, BehaviorActivity.class));
                 break;
             case R.id.main_template:
-                startActivity(new Intent(this, TemplateActivity.class));
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt(BehaviorMeta.CATEGORY, BehaviorMeta.ALL);
+                intent.putExtras(bundle);
+                intent.setClass(this, TemplateActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_delete_test:
                 getContentResolver().delete(BehaviorMeta.CONTENT_URI, "", new String[]{});
