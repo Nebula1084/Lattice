@@ -104,7 +104,7 @@ public class Navigator extends LinearLayout {
         }
     }
 
-    private void selectBar(int newPosition) {
+    public void selectBar(int newPosition) {
         TextView oldItem = (TextView) navigator_bar.getChildAt(currentItem);
         oldItem.setTextColor(Color.BLACK);
 

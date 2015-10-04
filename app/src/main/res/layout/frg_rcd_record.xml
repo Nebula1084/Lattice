@@ -53,11 +53,6 @@
             style="@style/LoginButton"
             android:text="@string/confirm"/>
 
-        <Button
-            android:id="@+id/frg_rcd_cancel"
-            style="@style/LoginButton"
-            android:text="存为模板"/>
-
     </LinearLayout>
 
 </LinearLayout>

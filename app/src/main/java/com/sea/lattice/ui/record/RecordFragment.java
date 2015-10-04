@@ -28,7 +28,7 @@ import java.util.Date;
 public class RecordFragment extends Fragment implements View.OnClickListener {
     private TimeDialog timeDialog;
     private TextView record_date_picker, record_behavior_picker;
-    private Button frg_rcd_confirm, frg_rcd_cancel;
+    private Button frg_rcd_confirm;
     private EditText frg_rcd_content;
     private Bundle bundle;
     private int category;
@@ -51,8 +51,6 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         record_behavior_picker = (TextView) rootView.findViewById(R.id.record_behavior_picker);
         frg_rcd_confirm = (Button) rootView.findViewById(R.id.frg_rcd_confirm);
         frg_rcd_confirm.setOnClickListener(this);
-        frg_rcd_cancel = (Button) rootView.findViewById(R.id.frg_rcd_cancel);
-        frg_rcd_cancel.setOnClickListener(this);
         frg_rcd_content = (EditText) rootView.findViewById(R.id.frg_rcd_content);
         initTimeText();
         record_behavior_picker.setText(BehaviorMeta.getCategory(category));
@@ -64,6 +62,10 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    public void setContent(String content){
+        frg_rcd_content.setText(content);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -72,9 +74,6 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.frg_rcd_confirm:
                 insert(timeDialog.getDate(), category, frg_rcd_content.getText().toString());
-                getActivity().finish();
-                break;
-            case R.id.frg_rcd_cancel:
                 getActivity().finish();
                 break;
         }

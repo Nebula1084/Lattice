@@ -39,14 +39,21 @@ public class TemplateFragment extends Fragment implements View.OnClickListener, 
     private int status;
     private int mode;
     private BehaviorObservable behaviorObservable;
+    private OnTemplateChooseListener mCallback;
 
     public final static String MODE = "mode";
     public final static int MODE_INSERT = 1;
     public final static int MODE_EDIT = 2;
+    public final static int MODE_CHOOSE = 3;
 
     public final static int STAT_DRCT = 1;
     public final static int STAT_TEMP = 2;
     public final static int STAT_TCHS = 3;
+
+    public interface OnTemplateChooseListener {
+        void OnChoose(String content);
+    }
+
 
     public TemplateFragment() {
         tmpChsFragment = new TmpChsFragment();
@@ -62,9 +69,13 @@ public class TemplateFragment extends Fragment implements View.OnClickListener, 
         fragmentManager = getChildFragmentManager();
         directoryFragment = new DirectoryFragment();
         directoryFragment.setOnDirectoryClickListener(this);
+        Bundle bundle = getArguments();
+        mode = bundle.getInt(MODE);
         replaceFragment(directoryFragment, STAT_DRCT);
         addButton = (Button) rootView.findViewById(R.id.add);
         addButton.setOnClickListener(this);
+        if (mode == MODE_CHOOSE)
+            addButton.setVisibility(View.GONE);
         mProgressNavigator = (ProgressNavigator) rootView.findViewById(R.id.progress_navigator);
         mProgressNavigator.forword("选择目录", new ProgressNavigator.OnBarClickListener(mProgressNavigator) {
             public void onClick(View v) {
@@ -78,6 +89,11 @@ public class TemplateFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+    }
+
+    public void setOnTemplateChooseListener(OnTemplateChooseListener callback) {
+        this.mCallback = callback;
     }
 
 
@@ -211,22 +227,32 @@ public class TemplateFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void onSelect(Cursor cursor) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(TemplateMeta.ID, cursor.getInt(cursor.getColumnIndex(TemplateMeta.ID)));
-        bundle.putString(TemplateMeta.NAME, cursor.getString(cursor.getColumnIndex(TemplateMeta.NAME)));
-        bundle.putInt(TemplateMeta.CATEGORY, cursor.getInt(cursor.getColumnIndex(TemplateMeta.CATEGORY)));
-        bundle.putString(TemplateMeta.CONTENT, cursor.getString(cursor.getColumnIndex(TemplateMeta.CONTENT)));
-        tmpRrcFragment.setArguments(bundle);
-        tmpRrcFragment.setMode(TemplateFragment.MODE_EDIT);
-        replaceFragment(tmpRrcFragment, STAT_TCHS);
-        mProgressNavigator.forword(cursor.getString(cursor.getColumnIndex(TemplateMeta.NAME)),
-                new ProgressNavigator.OnBarClickListener(mProgressNavigator) {
-                    public void onClick(View v) {
-                        super.onClick(v);
-                        tmpRrcFragment.setMode(TemplateFragment.MODE_EDIT);
-                        replaceFragment(tmpRrcFragment, STAT_TCHS);
-                    }
-                });
+        switch (mode) {
+            case MODE_EDIT:
+                Bundle bundle = new Bundle();
+                bundle.putInt(TemplateMeta.ID, cursor.getInt(cursor.getColumnIndex(TemplateMeta.ID)));
+                bundle.putString(TemplateMeta.NAME, cursor.getString(cursor.getColumnIndex(TemplateMeta.NAME)));
+                bundle.putInt(TemplateMeta.CATEGORY, cursor.getInt(cursor.getColumnIndex(TemplateMeta.CATEGORY)));
+                bundle.putString(TemplateMeta.CONTENT, cursor.getString(cursor.getColumnIndex(TemplateMeta.CONTENT)));
+                tmpRrcFragment.setArguments(bundle);
+                tmpRrcFragment.setMode(TemplateFragment.MODE_EDIT);
+                replaceFragment(tmpRrcFragment, STAT_TCHS);
+                mProgressNavigator.forword(cursor.getString(cursor.getColumnIndex(TemplateMeta.NAME)),
+                        new ProgressNavigator.OnBarClickListener(mProgressNavigator) {
+                            public void onClick(View v) {
+                                super.onClick(v);
+                                tmpRrcFragment.setMode(TemplateFragment.MODE_EDIT);
+                                replaceFragment(tmpRrcFragment, STAT_TCHS);
+                            }
+                        });
+                break;
+            case MODE_CHOOSE:
+                String content = cursor.getString(cursor.getColumnIndex(TemplateMeta.CONTENT));
+                if (mCallback != null)
+                    mCallback.OnChoose(content);
+                break;
+        }
+
     }
 
     public void chooseBehavior(int directory, int category) {

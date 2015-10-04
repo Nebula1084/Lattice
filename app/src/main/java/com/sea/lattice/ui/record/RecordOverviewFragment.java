@@ -15,7 +15,7 @@ import com.sea.lattice.ui.template.TemplateFragment;
 /**
  * Created by Sea on 9/26/2015.
  */
-public class RecordOverviewFragment extends Fragment {
+public class RecordOverviewFragment extends Fragment implements TemplateFragment.OnTemplateChooseListener{
     private Navigator navigator;
     private DefaultFragmentPagerAdapter mPagerAdapter;
     private Bundle bundle;
@@ -31,6 +31,10 @@ public class RecordOverviewFragment extends Fragment {
         recordFragment = new RecordFragment();
         templateFragment = new TemplateFragment();
 
+        Bundle bundle = new Bundle();
+        bundle.putInt(TemplateFragment.MODE, TemplateFragment.MODE_CHOOSE);
+        templateFragment.setArguments(bundle);
+        templateFragment.setOnTemplateChooseListener(this);
         mPagerAdapter = new DefaultFragmentPagerAdapter(getChildFragmentManager());
         mPagerAdapter.addFragment(getString(R.string.str_record), recordFragment);
         mPagerAdapter.addFragment(getString(R.string.record_choose_template), templateFragment);
@@ -44,4 +48,9 @@ public class RecordOverviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override
+    public void OnChoose(String content) {
+        recordFragment.setContent(content);
+        navigator.selectBar(0);
+    }
 }
