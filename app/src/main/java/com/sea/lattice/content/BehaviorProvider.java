@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.sea.lattice.dao.LatticeDB;
-import com.sea.lattice.dao.behavior.OriginBehavior;
 
 /**
  * Created by Sea on 9/24/2015.

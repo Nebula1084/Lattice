@@ -26,4 +26,10 @@
     <string name="str_behavior">业习</string>
     <string name="str_behavior_choose">选择业习</string>
     <string name="str_add">添加</string>
+
+    <string-array name="duration">
+        <item>每周</item>
+        <item>每月</item>
+        <item>每年</item>
+    </string-array>
 </resources>

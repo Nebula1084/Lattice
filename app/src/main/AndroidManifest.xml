@@ -15,7 +15,7 @@
         android:theme="@android:style/Theme.Holo.Light" >
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_lattice" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +35,10 @@
 
         </activity>
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ui.StatisticActivity"
-            android:label="@string/login_success" >
+            android:icon="@mipmap/ic_launcher"
+            android:label="统计" >
 
         </activity>
         <activity

@@ -6,7 +6,15 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dip"
+        android:layout_weight="1">
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/act_beh_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_input_height"
+        android:gravity="center"
+        android:background="@color/skyblue"/>
 </LinearLayout>

@@ -32,17 +32,19 @@ public class BehaviorList extends ListFragment implements LoaderManager.LoaderCa
     private String selection;
     private String[] selectionArgs;
     private OnBehaviorClickListner mCallback;
+    private View.OnTouchListener onTouchListener;
 
     public interface OnBehaviorClickListner {
         void onBehaviorClick(Cursor cursor);
     }
 
-    public static BehaviorList newInstance(@NonNull String selection, @NonNull String[] selectionArgs) {
+    public static BehaviorList newInstance(@NonNull String selection, @NonNull String[] selectionArgs, View.OnTouchListener onTouchListener) {
         BehaviorList instance = new BehaviorList();
         Bundle args = new Bundle();
         args.putString(SELECTION, selection);
         args.putStringArray(SELECTION_ARGS, selectionArgs);
         instance.setArguments(args);
+        instance.setOnTouchListener(onTouchListener);
         return instance;
     }
 
@@ -53,6 +55,7 @@ public class BehaviorList extends ListFragment implements LoaderManager.LoaderCa
         selectionArgs = bundle.getStringArray(SELECTION_ARGS);
         mAdapter = new BehaviorCurosrAdapter(getActivity(), null);
         setListAdapter(mAdapter);
+        getListView().setOnTouchListener(onTouchListener);
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -68,6 +71,10 @@ public class BehaviorList extends ListFragment implements LoaderManager.LoaderCa
         String[] projection = new String[]{BehaviorMeta.ID, BehaviorMeta.DATE, BehaviorMeta.CATEGORY, BehaviorMeta.CONTENT, BehaviorMeta.OPP};
         return new CursorLoader(getActivity(), baseUri,
                 projection, selection, selectionArgs, BehaviorMeta.DATE + " DESC");
+    }
+
+    public void setOnTouchListener(View.OnTouchListener l) {
+        onTouchListener = l;
     }
 
     @Override
@@ -104,7 +111,7 @@ public class BehaviorList extends ListFragment implements LoaderManager.LoaderCa
             Date date = new Date(cursor.getLong(1));
             item_behvaior_category.setText(BehaviorMeta.getCategory(cursor.getInt(2)));
             item_behvaior_date.setText(date.toString());
-            item_behvaior_content.setText(cursor.getString(0)+" "+cursor.getString(3)+" "+cursor.getString(4));
+            item_behvaior_content.setText(cursor.getString(0) + " " + cursor.getString(3) + " " + cursor.getString(4));
 
         }
     }
@@ -112,4 +119,5 @@ public class BehaviorList extends ListFragment implements LoaderManager.LoaderCa
     public void setOnBehaviorClickListner(OnBehaviorClickListner callback) {
         this.mCallback = callback;
     }
+
 }

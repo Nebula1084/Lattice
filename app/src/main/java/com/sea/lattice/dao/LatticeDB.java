@@ -8,8 +8,6 @@ import android.util.Log;
 import com.sea.lattice.content.BehaviorMeta;
 import com.sea.lattice.content.DirectoryMeta;
 import com.sea.lattice.content.TemplateMeta;
-import com.sea.lattice.dao.behavior.CounterBehavior;
-import com.sea.lattice.dao.behavior.OriginBehavior;
 
 /**
  * Created by Sea on 9/13/2015.
@@ -71,8 +69,7 @@ public class LatticeDB extends SQLiteOpenHelper {
 
     private void truncateDataBase(SQLiteDatabase db) {
         Log.v("execute?", "Yes");
-        db.execSQL("drop table if exists " + CounterBehavior.COUNTER_TABLE);
-        db.execSQL("drop table if exists " + OriginBehavior.BEHAVIOR_TABLE);
+
     }
 
 }

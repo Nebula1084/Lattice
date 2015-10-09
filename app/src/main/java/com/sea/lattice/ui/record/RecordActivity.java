@@ -35,12 +35,12 @@ public class RecordActivity extends FragmentActivity implements View.OnClickList
                 fragmentManager.beginTransaction().add(R.id.fragment_container, new RecordOverviewFragment()).commit();
                 break;
             case BehaviorMeta.WHITE_COUNTER:
-                list = BehaviorList.newInstance(BehaviorMeta.CATEGORY + "=" + BehaviorMeta.WHITE_BEHAVIOR + " AND " + BehaviorMeta.OPP + "=-1", new String[]{});
+                list = BehaviorList.newInstance(BehaviorMeta.CATEGORY + "=" + BehaviorMeta.WHITE_BEHAVIOR + " AND " + BehaviorMeta.OPP + "=-1", new String[]{}, null);
                 list.setOnBehaviorClickListner(this);
                 fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
                 break;
             case BehaviorMeta.BALCK_COUNTER:
-                list = BehaviorList.newInstance(BehaviorMeta.CATEGORY + "=" + BehaviorMeta.BLACK_BEHAVIOR + " AND " + BehaviorMeta.OPP + "=-1", new String[]{});
+                list = BehaviorList.newInstance(BehaviorMeta.CATEGORY + "=" + BehaviorMeta.BLACK_BEHAVIOR + " AND " + BehaviorMeta.OPP + "=-1", new String[]{}, null);
                 list.setOnBehaviorClickListner(this);
                 fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
                 break;

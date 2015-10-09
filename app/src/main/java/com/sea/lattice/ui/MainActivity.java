@@ -1,4 +1,4 @@
-package com.sea.lattice.ui.main;
+package com.sea.lattice.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +19,7 @@ import com.sea.lattice.ui.template.TemplateFragment;
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_wht_cnt, btn_blk_cnt, btn_wht_bhv, btn_blk_bhv;
     private Button main_behavior, btn_delete_test, btn_delete_directory, main_template;
+    private Button main_statistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_delete_test.setOnClickListener(this);
         btn_delete_directory = (Button) this.findViewById(R.id.btn_delete_directory);
         btn_delete_directory.setOnClickListener(this);
+        main_statistics = (Button) this.findViewById(R.id.main_statistics);
+        main_statistics.setOnClickListener(this);
     }
 
     @Override
@@ -61,6 +64,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_delete_directory:
                 getContentResolver().delete(DirectoryMeta.CONTENT_URI, "", new String[]{});
+                break;
+            case R.id.main_statistics:
+                startActivity(new Intent(this, StatisticActivity.class));
                 break;
         }
     }
