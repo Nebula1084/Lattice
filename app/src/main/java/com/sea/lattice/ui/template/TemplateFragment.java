@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -65,7 +64,7 @@ public class TemplateFragment extends Fragment implements View.OnClickListener, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_template, container, false);
+        View rootView = inflater.inflate(R.layout.frg_template, container, false);
         fragmentManager = getChildFragmentManager();
         directoryFragment = new DirectoryFragment();
         directoryFragment.setOnDirectoryClickListener(this);

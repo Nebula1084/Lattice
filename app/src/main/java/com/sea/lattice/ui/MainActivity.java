@@ -1,30 +1,32 @@
 package com.sea.lattice.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
 import com.sea.lattice.content.DirectoryMeta;
-import com.sea.lattice.ui.BehaviorActivity;
-import com.sea.lattice.ui.template.TemplateActivity;
 import com.sea.lattice.ui.record.RecordActivity;
-import com.sea.lattice.ui.template.TemplateFragment;
+import com.sea.lattice.ui.template.TemplateActivity;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btn_wht_cnt, btn_blk_cnt, btn_wht_bhv, btn_blk_bhv;
     private Button main_behavior, btn_delete_test, btn_delete_directory, main_template;
     private Button main_statistics;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) this.findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
         btn_wht_cnt = (Button) this.findViewById(R.id.btn_wht_cnt);
         btn_wht_cnt.setOnClickListener(new RecordListener(this));
         btn_blk_cnt = (Button) this.findViewById(R.id.btn_blk_cnt);

@@ -4,8 +4,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+
 
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
@@ -15,17 +18,20 @@ import com.sea.lattice.ui.BehaviorList;
 /**
  * Created by Sea on 9/15/2015.
  */
-public class RecordActivity extends FragmentActivity implements View.OnClickListener, BehaviorList.OnBehaviorClickListner {
+public class RecordActivity extends AppCompatActivity implements View.OnClickListener, BehaviorList.OnBehaviorClickListner {
     private FragmentManager fragmentManager;
     private int category;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frg_container);
+        setContentView(R.layout.activity_record);
         Bundle bundle = getIntent().getExtras();
         category = bundle.getInt(BehaviorMeta.CATEGORY);
         fragmentManager = getSupportFragmentManager();
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
         BehaviorList list;
         switch (category) {
             case BehaviorMeta.WHITE_BEHAVIOR:

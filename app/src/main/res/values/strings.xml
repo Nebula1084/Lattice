@@ -32,4 +32,9 @@
         <item>每月</item>
         <item>每年</item>
     </string-array>
+
+    <string-array name="chart">
+        <item>饼状图</item>
+        <item>折线图</item>
+    </string-array>
 </resources>

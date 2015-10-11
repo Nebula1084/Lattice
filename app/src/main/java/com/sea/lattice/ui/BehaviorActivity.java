@@ -4,11 +4,14 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
@@ -22,12 +25,13 @@ import java.util.Locale;
 /**
  * Created by Sea on 9/26/2015.
  */
-public class BehaviorActivity extends FragmentActivity implements ActionBar.OnNavigationListener, GestureDetector.OnGestureListener, View.OnTouchListener {
+public class BehaviorActivity extends AppCompatActivity implements View.OnTouchListener, AdapterView.OnItemSelectedListener {
     private FragmentManager fragmentManager;
     private Calendar calendar;
     private TextView act_beh_date;
-    private ActionBar actionBar;
     private GestureDetector gestureDetector;
+    private Toolbar toolbar;
+    private Spinner spinner;
 
     final private static int forWeek = 0;
     final private static int forMonth = 1;
@@ -39,21 +43,30 @@ public class BehaviorActivity extends FragmentActivity implements ActionBar.OnNa
         setContentView(R.layout.activity_behavior);
         act_beh_date = (TextView) findViewById(R.id.act_beh_date);
         SpinnerAdapter adapter = ArrayAdapter.createFromResource(this, R.array.duration, android.R.layout.simple_spinner_dropdown_item);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         calendar = Calendar.getInstance();
-        actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        actionBar.setListNavigationCallbacks(adapter, this);
-        gestureDetector = new GestureDetector(this, this);
+        setSupportActionBar(toolbar);
+        gestureDetector = new GestureDetector(this, new FlingListener() {
+
+            @Override
+            public void onRight() {
+                setDate(spinner.getSelectedItemPosition(), 1);
+                showDate(spinner.getSelectedItemPosition());
+            }
+
+            @Override
+            public void onLeft() {
+                setDate(spinner.getSelectedItemPosition(), -1);
+                showDate(spinner.getSelectedItemPosition());
+            }
+        });
         fragmentManager = getSupportFragmentManager();
         BehaviorList list = BehaviorList.newInstance("", new String[]{}, this);
         fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
-        showDate(actionBar.getSelectedNavigationIndex());
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-        showDate(itemPosition);
-        return true;
+        showDate(spinner.getSelectedItemPosition());
     }
 
     private void showDate(int select) {
@@ -118,43 +131,12 @@ public class BehaviorActivity extends FragmentActivity implements ActionBar.OnNa
     }
 
     @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        showDate(position);
     }
 
     @Override
-    public void onShowPress(MotionEvent e) {
-    }
+    public void onNothingSelected(AdapterView<?> parent) {
 
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
     }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if (Math.abs(e1.getY() - e2.getY()) > 120)
-            return false;
-        if (e1.getX() - e2.getX() > 120) {
-            setDate(actionBar.getSelectedNavigationIndex(), 1);
-            showDate(actionBar.getSelectedNavigationIndex());
-            return true;
-        }
-        if (e1.getX() - e2.getX() < -120) {
-            setDate(actionBar.getSelectedNavigationIndex(), -1);
-            showDate(actionBar.getSelectedNavigationIndex());
-            return true;
-        }
-        return false;
-    }
-
 }

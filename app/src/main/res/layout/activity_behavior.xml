@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        style="@style/LatticeToolBar">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        </Spinner>
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -15,6 +28,6 @@
         android:id="@+id/act_beh_date"
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_input_height"
-        android:gravity="center"
-        android:background="@color/skyblue"/>
+        android:background="@color/skyblue"
+        android:gravity="center" />
 </LinearLayout>
