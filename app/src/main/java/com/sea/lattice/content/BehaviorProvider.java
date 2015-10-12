@@ -17,8 +17,8 @@ import com.sea.lattice.dao.LatticeDB;
  */
 public class BehaviorProvider extends ContentProvider {
 
-    LatticeDB lDB;
-    SQLiteDatabase db;
+    private LatticeDB lDB;
+    private SQLiteDatabase db;
 
     private static final UriMatcher uriMatcher;
 

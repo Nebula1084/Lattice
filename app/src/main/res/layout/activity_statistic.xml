@@ -23,9 +23,15 @@
     <LinearLayout
         android:id="@+id/chart_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/act_stt_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_input_height"
+        android:background="@color/skyblue"
+        android:gravity="center" />
 </LinearLayout>

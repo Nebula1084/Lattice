@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,7 +50,8 @@ public class BehaviorActivity extends AppCompatActivity implements View.OnTouchL
         spinner.setOnItemSelectedListener(this);
         calendar = Calendar.getInstance();
         setSupportActionBar(toolbar);
-        gestureDetector = new GestureDetector(this, new FlingListener() {
+        Display mDisplay = getWindowManager().getDefaultDisplay();
+        gestureDetector = new GestureDetector(this, new FlingListener(mDisplay.getWidth(), mDisplay.getHeight()) {
 
             @Override
             public void onRight() {
