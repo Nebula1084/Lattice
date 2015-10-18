@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,6 +60,7 @@ public class StatisticActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.statistics_bar);
         statistics_chart = (Spinner) findViewById(R.id.statistics_chart);
         statistics_range = (Spinner) findViewById(R.id.statistics_range);
+
         ArrayAdapter<CharSequence> durationAdapter = ArrayAdapter.createFromResource(this, R.array.duration, R.layout.support_simple_spinner_dropdown_item);
         durationAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         statistics_range.setAdapter(durationAdapter);
@@ -91,7 +93,7 @@ public class StatisticActivity extends AppCompatActivity {
             }
         });
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         gestureDetector = new GestureDetector(this, new FlingListener(mDisplay.getWidth(), mDisplay.getHeight()) {
 
             @Override
@@ -108,6 +110,16 @@ public class StatisticActivity extends AppCompatActivity {
                 showChart(statistics_chart.getSelectedItemPosition());
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public boolean onTouchEvent(MotionEvent event) {

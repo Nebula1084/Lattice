@@ -3,10 +3,13 @@ package com.sea.lattice.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button main_behavior, btn_delete_test, btn_delete_directory, main_template;
     private Button main_statistics;
     private Toolbar toolbar;
+    private DrawerLayout lattice_drawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private LinearLayout main_remind, main_export, main_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) this.findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        /* main screen*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btn_wht_cnt = (Button) this.findViewById(R.id.btn_wht_cnt);
         btn_wht_cnt.setOnClickListener(new RecordListener(this));
         btn_blk_cnt = (Button) this.findViewById(R.id.btn_blk_cnt);
@@ -45,11 +54,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_delete_directory.setOnClickListener(this);
         main_statistics = (Button) this.findViewById(R.id.main_statistics);
         main_statistics.setOnClickListener(this);
+        lattice_drawer = (DrawerLayout) this.findViewById(R.id.lattice_drawer);
+        mDrawerToggle = new ActionBarDrawerToggle(this, lattice_drawer, toolbar, R.string.open, R.string.close);
+        mDrawerToggle.syncState();
+        lattice_drawer.setDrawerListener(mDrawerToggle);
+
+        /* slide menu*/
+        main_remind = (LinearLayout) this.findViewById(R.id.main_remind);
+        main_remind.setOnClickListener(this);
+        main_export = (LinearLayout) this.findViewById(R.id.main_export);
+        main_export.setOnClickListener(this);
+        main_about = (LinearLayout) this.findViewById(R.id.main_about);
+        main_about.setOnClickListener(this);
+
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_behavior:
                 startActivity(new Intent(this, BehaviorActivity.class));
                 break;
@@ -69,6 +92,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_statistics:
                 startActivity(new Intent(this, StatisticActivity.class));
+                break;
+            case R.id.main_remind:
+                startActivity(new Intent(this, SettingActivity.class));
+                break;
+            case R.id.main_export:
+                startActivity(new Intent(this, SettingActivity.class));
+                break;
+            case R.id.main_about:
+                startActivity(new Intent(this, SettingActivity.class));
                 break;
         }
     }

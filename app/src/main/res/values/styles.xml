@@ -77,4 +77,11 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <style name="main_menu_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/menuHeight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/menuSize</item>
+    </style>
+
 </resources>

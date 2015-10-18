@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -32,6 +33,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         BehaviorList list;
         switch (category) {
             case BehaviorMeta.WHITE_BEHAVIOR:
@@ -51,6 +53,16 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
                 fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

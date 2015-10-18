@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,6 +51,9 @@ public class BehaviorActivity extends AppCompatActivity implements View.OnTouchL
         spinner.setOnItemSelectedListener(this);
         calendar = Calendar.getInstance();
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Display mDisplay = getWindowManager().getDefaultDisplay();
         gestureDetector = new GestureDetector(this, new FlingListener(mDisplay.getWidth(), mDisplay.getHeight()) {
 
@@ -69,6 +73,18 @@ public class BehaviorActivity extends AppCompatActivity implements View.OnTouchL
         BehaviorList list = BehaviorList.newInstance("", new String[]{}, this);
         fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
         showDate(spinner.getSelectedItemPosition());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // TODO Auto-generated method stub
+        if(item.getItemId() == android.R.id.home)
+        {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showDate(int select) {

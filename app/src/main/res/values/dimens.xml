@@ -15,4 +15,6 @@
     <dimen name="progressnavbar_height">40dp</dimen>
     <dimen name="item_category_height">30dp</dimen>
     <dimen name="item_category_textsize">15sp</dimen>
+    <dimen name="menuSize">16sp</dimen>
+    <dimen name="menuHeight">50dp</dimen>
 </resources>
