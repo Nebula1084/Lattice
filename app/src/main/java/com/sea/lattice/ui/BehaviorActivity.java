@@ -70,17 +70,15 @@ public class BehaviorActivity extends AppCompatActivity implements View.OnTouchL
             }
         });
         fragmentManager = getSupportFragmentManager();
-        BehaviorList list = BehaviorList.newInstance("", new String[]{}, this);
+        BehaviorList list = BehaviorList.newInstance("", new String[]{});
         fragmentManager.beginTransaction().add(R.id.fragment_container, list).commit();
         showDate(spinner.getSelectedItemPosition());
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
-        if(item.getItemId() == android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -121,7 +119,7 @@ public class BehaviorActivity extends AppCompatActivity implements View.OnTouchL
                 act_beh_date.setText(format.format(calendar.getTime()));
                 break;
         }
-        BehaviorList list = BehaviorList.newInstance("?<=" + BehaviorMeta.DATE + " and " + BehaviorMeta.DATE + "<=?", new String[]{String.valueOf(front.getTime().getTime()), String.valueOf(rear.getTime().getTime())}, this);
+        BehaviorList list = BehaviorList.newInstance("?<=" + BehaviorMeta.DATE + " and " + BehaviorMeta.DATE + "<=?", new String[]{String.valueOf(front.getTime().getTime()), String.valueOf(rear.getTime().getTime())});
         fragmentManager.beginTransaction().replace(R.id.fragment_container, list).commit();
     }
 

@@ -53,6 +53,7 @@ public class TmpChsFragment extends ListFragment implements LoaderManager.Loader
         }
         mAdapter = new TemplateCursorAdapter(getActivity(), null);
         setListAdapter(mAdapter);
+        getListView().setPadding(20, 10, 20, 10);
         getLoaderManager().initLoader(0, null, this);
     }
 

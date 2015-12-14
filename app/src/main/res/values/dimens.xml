@@ -17,4 +17,6 @@
     <dimen name="item_category_textsize">15sp</dimen>
     <dimen name="menuSize">16sp</dimen>
     <dimen name="menuHeight">50dp</dimen>
+    <dimen name="photo_height">80dp</dimen>
+    <dimen name="photo_width">70dp</dimen>
 </resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/lattice_tool_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/list_divider"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:showDividers="middle|beginning|end">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60.0dip"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/couterremind_black"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/LatticeTextAppearance"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="黑业对治提示" />"
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60.0dip"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/couterremind_white"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/LatticeTextAppearance"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="白业对治提示" />"
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60.0dip">
+
+            <CheckBox
+                android:id="@+id/couterremind_everyday"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/couterremind_summary"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/LatticeTextAppearance"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="每日总结" />
+
+                <TextView
+                    android:id="@+id/couterremind_time"
+                    style="@style/LatticeTextAppearance"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="xx:xx" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

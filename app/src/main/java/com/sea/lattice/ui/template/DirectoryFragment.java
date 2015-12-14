@@ -41,10 +41,11 @@ public class DirectoryFragment extends ListFragment implements LoaderManager.Loa
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        mAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2,
-                null, new String[]{DirectoryMeta.NAME, DirectoryMeta.ID},
-                new int[]{android.R.id.text1, android.R.id.text2}, 0);
+        mAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1,
+                null, new String[]{DirectoryMeta.NAME},
+                new int[]{android.R.id.text1}, 0);
         setListAdapter(mAdapter);
+        getListView().setPadding(20, 10, 20, 10);
         getActivity().getContentResolver().registerContentObserver(DirectoryMeta.CONTENT_URI, true, new DirectoryObserver(new Handler()));
         getLoaderManager().initLoader(0, null, this);
     }

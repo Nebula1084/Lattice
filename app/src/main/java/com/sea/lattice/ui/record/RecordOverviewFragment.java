@@ -1,7 +1,11 @@
 package com.sea.lattice.ui.record;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +19,9 @@ import com.sea.lattice.ui.template.TemplateFragment;
 /**
  * Created by Sea on 9/26/2015.
  */
-public class RecordOverviewFragment extends Fragment implements TemplateFragment.OnTemplateChooseListener{
+public class RecordOverviewFragment extends Fragment implements TemplateFragment.OnTemplateChooseListener {
     private Navigator navigator;
     private DefaultFragmentPagerAdapter mPagerAdapter;
-    private Bundle bundle;
     private RecordFragment recordFragment;
     private TemplateFragment templateFragment;
 
@@ -26,7 +29,6 @@ public class RecordOverviewFragment extends Fragment implements TemplateFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.screen_record, container, false);
-        bundle = getActivity().getIntent().getExtras();
         navigator = (Navigator) rootView.findViewById(R.id.screen_record_pager);
         recordFragment = new RecordFragment();
         templateFragment = new TemplateFragment();
@@ -42,6 +44,13 @@ public class RecordOverviewFragment extends Fragment implements TemplateFragment
         navigator.setFocusableInTouchMode(false);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("" + resultCode, "" + Activity.RESULT_OK);
+        recordFragment.onActivityResult(requestCode, resultCode, data);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {

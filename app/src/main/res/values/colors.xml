@@ -2,6 +2,7 @@
 <resources>
     <color name="translucent_red">#80ff0000</color>
     <color name="white">#ffffff</color>
-    <color name="skyblue">#87cefa</color>
-    <color name="darkblue">#6495ED</color>
+    <color name="skyblue">#99CCFF</color>
+    <color name="darkblue">#3399CC</color>
+
 </resources>

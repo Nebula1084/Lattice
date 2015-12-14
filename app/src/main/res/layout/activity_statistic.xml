@@ -32,6 +32,6 @@
         android:id="@+id/act_stt_date"
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_input_height"
-        android:background="@color/skyblue"
+        android:background="?colorPrimary"
         android:gravity="center" />
 </LinearLayout>

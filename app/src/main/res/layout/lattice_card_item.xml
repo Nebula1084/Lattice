@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sea.lattice.widget.LatticeCardItemView style="@style/MainLayout">
+
+    <include layout="@layout/lattice_card_view" />
+
+</com.sea.lattice.widget.LatticeCardItemView>

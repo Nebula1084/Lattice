@@ -14,6 +14,8 @@ public class TemplateMeta {
     public static final String CONTENT = "content";
     public static final String FREQUENCY = "frequency";
     public static final String DIRECTORY = "directory";
+    public static final String AUDIO = "audio";
+    public static final String PHOTO = "photo";
 
     public static final int ITEM = 1;
 

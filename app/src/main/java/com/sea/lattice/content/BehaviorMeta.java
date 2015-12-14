@@ -13,6 +13,8 @@ public class BehaviorMeta {
     public static final String CATEGORY = "category";
     public static final String CONTENT = "content";
     public static final String OPP = "opp";
+    public static final String AUDIO = "audio";
+    public static final String PHOTO = "photo";
 
     public static final int ITEM = 1;
     public static final int ITEM_ID = 2;

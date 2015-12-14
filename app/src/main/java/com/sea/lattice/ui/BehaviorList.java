@@ -1,123 +1,93 @@
 package com.sea.lattice.ui;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.dexafree.materialList.view.MaterialListView;
 import com.sea.lattice.R;
 import com.sea.lattice.content.BehaviorMeta;
+import com.sea.lattice.widget.LatticeCard;
 
 import java.util.Date;
 
 /**
  * Created by Sea on 9/24/2015.
  */
-public class BehaviorList extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class BehaviorList extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private CursorAdapter mAdapter;
     private static final String SELECTION = "selection";
     private static final String SELECTION_ARGS = "selection_args";
     private String selection;
     private String[] selectionArgs;
-    private OnBehaviorClickListner mCallback;
-    private View.OnTouchListener onTouchListener;
+    private MaterialListView materialListView;
 
-    public interface OnBehaviorClickListner {
-        void onBehaviorClick(Cursor cursor);
-    }
-
-    public static BehaviorList newInstance(@NonNull String selection, @NonNull String[] selectionArgs, View.OnTouchListener onTouchListener) {
+    public static BehaviorList newInstance(@NonNull String selection, @NonNull String[] selectionArgs) {
         BehaviorList instance = new BehaviorList();
         Bundle args = new Bundle();
         args.putString(SELECTION, selection);
         args.putStringArray(SELECTION_ARGS, selectionArgs);
         instance.setArguments(args);
-        instance.setOnTouchListener(onTouchListener);
         return instance;
     }
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.frg_behavior_list, container, false);
+        materialListView = (MaterialListView) rootView.findViewById(R.id.material_listview);
+        return rootView;
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Bundle bundle = getArguments();
         selection = bundle.getString(SELECTION);
         selectionArgs = bundle.getStringArray(SELECTION_ARGS);
-        mAdapter = new BehaviorCurosrAdapter(getActivity(), null);
-        setListAdapter(mAdapter);
-        getListView().setOnTouchListener(onTouchListener);
         getLoaderManager().initLoader(0, null, this);
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        if (mCallback != null)
-            mCallback.onBehaviorClick((Cursor) l.getAdapter().getItem(position));
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Uri baseUri = BehaviorMeta.CONTENT_URI;
-        String[] projection = new String[]{BehaviorMeta.ID, BehaviorMeta.DATE, BehaviorMeta.CATEGORY, BehaviorMeta.CONTENT, BehaviorMeta.OPP};
+        String[] projection = new String[]{
+                BehaviorMeta.ID, BehaviorMeta.DATE, BehaviorMeta.CATEGORY,
+                BehaviorMeta.CONTENT, BehaviorMeta.OPP,
+                BehaviorMeta.AUDIO, BehaviorMeta.PHOTO
+        };
         return new CursorLoader(getActivity(), baseUri,
                 projection, selection, selectionArgs, BehaviorMeta.DATE + " DESC");
     }
 
-    public void setOnTouchListener(View.OnTouchListener l) {
-        onTouchListener = l;
-    }
-
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mAdapter.swapCursor(data);
-        if (isResumed()) {
-            setListShown(true);
-        } else {
-            setListShownNoAnimation(true);
+        materialListView.clear();
+        LatticeCard latticeCard;
+        if (data.moveToFirst()){
+            do {
+                latticeCard = new LatticeCard(getContext());
+                latticeCard.setDate(new Date(data.getLong(1)));
+                latticeCard.setBehavior(BehaviorMeta.getCategory(data.getInt(2)));
+                latticeCard.setContent(data.getString(3));
+                latticeCard.setAudio(data.getString(5));
+                latticeCard.setPhoto(data.getString(6));
+                materialListView.add(latticeCard);
+            }while (data.moveToNext());
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        mAdapter.swapCursor(null);
+
     }
 
-    private class BehaviorCurosrAdapter extends CursorAdapter {
-
-        public BehaviorCurosrAdapter(Context context, Cursor c) {
-            super(context, c, true);
-        }
-
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            return LayoutInflater.from(context).inflate(R.layout.item_behavior, null);
-        }
-
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            TextView item_behvaior_category = (TextView) view.findViewById(R.id.item_behavior_category);
-            TextView item_behvaior_date = (TextView) view.findViewById(R.id.item_behavior_date);
-            TextView item_behvaior_content = (TextView) view.findViewById(R.id.item_behavior_content);
-            Date date = new Date(cursor.getLong(1));
-            item_behvaior_category.setText(BehaviorMeta.getCategory(cursor.getInt(2)));
-            item_behvaior_date.setText(date.toString());
-            item_behvaior_content.setText(cursor.getString(0) + " " + cursor.getString(3) + " " + cursor.getString(4));
-
-        }
-    }
-
-    public void setOnBehaviorClickListner(OnBehaviorClickListner callback) {
-        this.mCallback = callback;
-    }
 
 }

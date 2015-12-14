@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/lattice_tool_bar" />
+
+    <ListView
+        android:id="@+id/backup_list"
+        android:layout_width="match_parent"
+        android:divider="@drawable/list_divider"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/act_beh_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_input_height"
+        android:background="?colorPrimary"
+        android:gravity="center" />
+</LinearLayout>

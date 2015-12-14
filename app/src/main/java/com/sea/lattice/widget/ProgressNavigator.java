@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ProgressBarDeterminate;
 import com.sea.lattice.R;
 
 /**
@@ -15,10 +16,10 @@ import com.sea.lattice.R;
 public class ProgressNavigator extends LinearLayout {
     private LinearLayout titleBar;
 
-    public abstract class OnBackwardListener{
+    public abstract class OnBackwardListener {
         View view;
 
-        public OnBackwardListener(View view){
+        public OnBackwardListener(View view) {
             this.view = view;
         }
 
@@ -40,41 +41,41 @@ public class ProgressNavigator extends LinearLayout {
         init();
     }
 
-    private void init(){
+    private void init() {
         inflate(getContext(), R.layout.progressnavigator, this);
-        titleBar = (LinearLayout)this.findViewById(R.id.titlebar);
+        titleBar = (LinearLayout) this.findViewById(R.id.titlebar);
     }
 
-    public void forword(String title, OnBarClickListener onBarClickListener){
+    public void forword(String title, OnBarClickListener onBarClickListener) {
         inflate(getContext(), R.layout.progressnavigator_bar, titleBar);
-        TextView textView = (TextView)titleBar.getChildAt(titleBar.getChildCount()-1);
+        TextView textView = (TextView) titleBar.getChildAt(titleBar.getChildCount() - 1);
         textView.setText(title);
         textView.setId(titleBar.getChildCount());
         textView.setOnClickListener(onBarClickListener);
     }
 
-    public void forword(String title){
+    public void forword(String title) {
         forword(title, new OnBarClickListener(this));
     }
 
-    private void pop(int id){
-        int i = titleBar.getChildCount()-1;
-        while (titleBar.getChildAt(i).getId()!=id){
+    private void pop(int id) {
+        int i = titleBar.getChildCount() - 1;
+        while (titleBar.getChildAt(i).getId() != id) {
             titleBar.removeViewAt(i);
             i--;
         }
     }
 
-    public void pop(){
-        int i = titleBar.getChildCount()-1;
+    public void pop() {
+        int i = titleBar.getChildCount() - 1;
         titleBar.removeViewAt(i);
     }
 
-    public static class OnBarClickListener implements OnClickListener{
+    public static class OnBarClickListener implements OnClickListener {
         ProgressNavigator progressNavigator;
 
-        public OnBarClickListener(ProgressNavigator progressNavigator){
-            this.progressNavigator=progressNavigator;
+        public OnBarClickListener(ProgressNavigator progressNavigator) {
+            this.progressNavigator = progressNavigator;
         }
 
         @Override

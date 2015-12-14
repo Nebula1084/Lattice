@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:id="@+id/frg_audio"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:id="@+id/card_player">
+
+        <com.sea.lattice.widget.MaterialPlayPauseButton
+            android:id="@+id/player_pause"
+            android:layout_marginLeft="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <com.gc.materialdesign.views.ProgressBarDeterminate
+            android:id="@+id/player_progressDeterminate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="#1E88E5" />
+
+    </LinearLayout>
+</LinearLayout>

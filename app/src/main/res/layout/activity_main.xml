@@ -29,14 +29,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <Button
+                    <com.gc.materialdesign.views.ButtonRectangle
                         android:id="@+id/btn_wht_bhv"
                         style="@style/MainButton"
+                        android:background="#1E88E5"
                         android:text="@string/white_behavior" />
 
-                    <Button
+                    <com.gc.materialdesign.views.ButtonRectangle
                         android:id="@+id/btn_wht_cnt"
                         style="@style/MainButton"
+                        android:background="#CC0000"
                         android:text="@string/white_counter" />
 
                 </LinearLayout>
@@ -46,49 +48,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <Button
+                    <com.gc.materialdesign.views.ButtonRectangle
                         android:id="@+id/btn_blk_cnt"
                         style="@style/MainButton"
+                        android:background="#00CC00"
                         android:text="@string/black_counter" />
 
-                    <Button
+                    <com.gc.materialdesign.views.ButtonRectangle
                         android:id="@+id/btn_blk_bhv"
                         style="@style/MainButton"
+                        android:background="#000000"
                         android:text="@string/black_behavior" />
+
                 </LinearLayout>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_delete_test"
-                style="@style/LoginButton"
-                android:text="删除" />
-
-            <Button
-                android:id="@+id/btn_delete_directory"
-                style="@style/LoginButton"
-                android:text="删除目录" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/main_template"
-                    style="@style/LoginButton"
-                    android:text="模板" />
-
-                <Button
-                    android:id="@+id/main_behavior"
-                    style="@style/LoginButton"
-                    android:text="记录" />
-
-                <Button
-                    android:id="@+id/main_statistics"
-                    style="@style/LoginButton"
-                    android:text="统计" />
-
-
             </LinearLayout>
 
         </LinearLayout>
@@ -97,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#fff"
+            android:background="#aaffffff"
             android:divider="@drawable/list_divider"
             android:orientation="vertical"
             android:padding="5dp"
@@ -118,20 +90,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/main_export"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    style="@style/main_menu_item_text"
-                    android:text="数据导出" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/main_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -142,8 +100,37 @@
 
                 <TextView
                     style="@style/main_menu_item_text"
-                    android:text="关于" />
+                    android:text="备份与恢复" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_encouterremind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/main_menu_item_text"
+                    android:text="对治提醒与每日总结设置" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_export"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/main_menu_item_text"
+                    android:text="导出为excel" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
